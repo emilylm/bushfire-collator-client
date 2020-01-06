@@ -39,7 +39,7 @@ export const customStylesCity = {
 	}),
 	singleValue: styles => ({
 		...styles,
-		fontSize: '0.875rem',
+		fontSize: '1rem',
 		color: '#495057',
 	}),
 	valueContainer: styles => ({
@@ -71,7 +71,7 @@ export const customStylesCity = {
 		...styles,
 		height: '21px',
 		maxHeight: '21px',
-		fontSize: '.875rem',
+		fontSize: '1rem',
 		color: isDisabled ? 'transparent' : '#ced4da',
 	}),
   menu: provided => ({ ...provided, zIndex: 9999 })
@@ -116,7 +116,7 @@ export const customStylesState = {
 	}),
 	singleValue: styles => ({
 		...styles,
-		fontSize: '0.875rem',
+		fontSize: '1rem',
 		color: '#495057',
 	}),
 	valueContainer: styles => ({

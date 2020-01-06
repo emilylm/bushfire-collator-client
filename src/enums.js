@@ -2,28 +2,21 @@ import React from 'react';
 
 export const STATES = {
   NSW: {
+    abr: "NSW",
     label: "nsw",
-    description: "NSW Fires"
+    description: "NSW"
   },
   VIC: {
+    abr: "VIC",
     label: "vic",
-    description: "VIC Fires"
+    description: "VIC"
   },
   AGG: {
+    abr: "AGG",
     label: "aggregate",
-    description: "Both NSW & VIC Fires"
+    description: "Both NSW & VIC"
   }
 }
-
-export const STATE_OPTIONS = [
-  {value: "nsw", label: "NSW Fires"},
-  {value: "vic", label: "VIC Fires"},
-  {value: "aggregate", label: "Both NSW & VIC Fires"},
-]
-/*
-export const CITY_OPTIONS = {
-  {value: ""}
-}*/
 
 export const CITIES = {
   MEL: {

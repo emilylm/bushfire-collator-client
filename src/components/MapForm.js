@@ -30,11 +30,25 @@ export default class MapForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentStateOption: {value: this.props.options.target.label, label: this.props.options.target.description},
+      currentStateOption: {value: this.props.options.target.abr, label: this.props.options.target.description},
       stateOptions: getStateOptions(),
       currentCityOption: {value: this.props.options.city.abr, label: this.props.options.city.name},
       cityOptions: getCityOptions()
     }
+  }
+
+  updateCityOption = option => {
+		this.setState({
+			currentCityOption: option
+		});
+    this.props.updateCitySelection(option.value)
+  }
+
+  updateStateOption = option => {
+		this.setState({
+			currentStateOption: option
+		});
+    this.props.updateStateSelection(option.value)
   }
 
   render() {
@@ -42,17 +56,15 @@ export default class MapForm extends React.Component {
       <div>
         <Form inline>
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-          <Label className="mr-sm-2">Currently showing total area of current fires burning in: </Label>
-          <Select id="stateSelect" options={this.state.stateOptions} onChange={(e) => {}} value={this.state.currentStateOption || ""} styles={customStylesState}/>
+          <Label className="mr-sm-2">Showing the <b>&nbsp;total area of fires currently burning&nbsp;</b> in: </Label>
+          <Select id="stateSelect" options={this.state.stateOptions} onChange={this.updateStateOption.bind(this)} value={this.state.currentStateOption || ""} styles={customStylesState}/>
         </FormGroup>
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-          <Label className="mr-sm-2">Over the city of:</Label>
-          <Select id="citySelect" options={this.state.cityOptions} onChange={(e) => {}} value={this.state.currentCityOption || ""} styles={customStylesCity}/>
+          <Label className="mr-sm-2">over the city of:</Label>
+          <Select id="citySelect" options={this.state.cityOptions} onChange={this.updateCityOption.bind(this)} value={this.state.currentCityOption || ""} styles={customStylesCity}/>
         </FormGroup>
       </Form>
     </div>
-
-
 
     )
   }

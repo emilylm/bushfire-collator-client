@@ -99,6 +99,19 @@ export default class InteractiveMap extends Component {
 
   }
 
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if ((this.props.lat !== prevProps.lat) || (this.props.lng !== prevProps.lng) || (this.props.size !== prevProps.size)) {
+      this.setState({
+        lat: this.props.lat,
+        lng: this.props.lng,
+        size: this.props.size,
+        radius: computeRadius(this.props.size),
+        zoom: 8
+      });
+    }
+  }
+
   render() {
     const position = [this.state.lat, this.state.lng]
     return (
