@@ -175,9 +175,6 @@ export default class Homepage extends React.Component {
       <h3> Australian Bushfires: Current Incident Area Map </h3>
       </Row>
       <Row id="row2">
-        <Col id="col1">
-        </Col>
-        <Col id="col2row1">
           <Card className="rounded-0" id="mapFormCard">
             <CardBody>
 
@@ -185,7 +182,6 @@ export default class Homepage extends React.Component {
 
             </CardBody>
           </Card>
-        </Col>
       </Row>
 
       <Row id="row3">
