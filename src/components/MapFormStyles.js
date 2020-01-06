@@ -20,12 +20,9 @@ export const customStylesCity = {
 		borderWidth: isDisabled
 			? '0px' : '1px',
 		borderStyle: 'solid',
-    borderColor: isFocused
-    ? '#2684ff' : '#ced4da',
+    borderColor: '#ced4da',
 		paddingLeft: '8px',
-		paddingRight: '1px',
-    '&:hover': { borderColor: '#2684ff' },
-    '&:focus': { borderColor: '#2684ff' }
+		paddingRight: '1px'
 	}),
 	option: (styles, { isSelected, isFocused }) => ({
 		...styles,
@@ -99,11 +96,9 @@ export const customStylesState = {
 		borderWidth: isDisabled
 			? '0px' : '1px',
 		borderStyle: 'solid',
-		borderColor: isFocused
-    ? '#2684ff' : '#ced4da',
+		borderColor: '#ced4da',
 		paddingLeft: '8px',
-		paddingRight: '0px',
-    '&:hover': { borderColor: '#2684ff' }
+		paddingRight: '0px'
 	}),
 	option: (styles, { isSelected, isFocused }) => ({
 		...styles,
