@@ -20,9 +20,12 @@ export const customStylesCity = {
 		borderWidth: isDisabled
 			? '0px' : '1px',
 		borderStyle: 'solid',
-		borderColor: '#ced4da',
+    borderColor: isFocused
+    ? '#2684ff' : '#ced4da',
 		paddingLeft: '8px',
 		paddingRight: '1px',
+    '&:hover': { borderColor: '#2684ff' },
+    '&:focus': { borderColor: '#2684ff' }
 	}),
 	option: (styles, { isSelected, isFocused }) => ({
 		...styles,
@@ -54,10 +57,9 @@ export const customStylesCity = {
 		padding: '0px',
 		color: isDisabled ? 'transparent' : '#ced4da',
 	}),
-	indicatorSeparator: (styles, { isDisabled }) => ({
+  indicatorSeparator: (styles, { isDisabled }) => ({
 		...styles,
-		padding: '0px',
-		backgroundColor: isDisabled ? 'transparent' : '#ced4da',
+		backgroundColor: 'transparent',
 	}),
 	dropdownIndicator: (styles, { isDisabled }) => ({
 		...styles,
@@ -65,7 +67,7 @@ export const customStylesCity = {
 		paddingRight: '4px',
 		paddingBottom: '4px',
 		paddingLeft: '4px',
-		color: isDisabled ? 'transparent' : '#ced4da',
+		color: isDisabled ? 'transparent' : 'hsl(0,0%,60%)',
 	}),
 	placeholder: (styles, { isDisabled }) => ({
 		...styles,
@@ -97,9 +99,11 @@ export const customStylesState = {
 		borderWidth: isDisabled
 			? '0px' : '1px',
 		borderStyle: 'solid',
-		borderColor: '#ced4da',
+		borderColor: isFocused
+    ? '#2684ff' : '#ced4da',
 		paddingLeft: '8px',
 		paddingRight: '0px',
+    '&:hover': { borderColor: '#2684ff' }
 	}),
 	option: (styles, { isSelected, isFocused }) => ({
 		...styles,
@@ -133,8 +137,7 @@ export const customStylesState = {
 	}),
 	indicatorSeparator: (styles, { isDisabled }) => ({
 		...styles,
-		padding: '0px',
-		backgroundColor: isDisabled ? 'transparent' : '#ced4da',
+		backgroundColor: 'transparent',
 	}),
 	dropdownIndicator: (styles, { isDisabled }) => ({
 		...styles,
@@ -142,7 +145,7 @@ export const customStylesState = {
 		paddingRight: '4px',
 		paddingBottom: '4px',
 		paddingLeft: '4px',
-		color: isDisabled ? 'transparent' : '#ced4da',
+		color: isDisabled ? 'transparent' : 'hsl(0,0%,60%)',
 	}),
 	placeholder: (styles, { isDisabled }) => ({
 		...styles,

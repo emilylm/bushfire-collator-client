@@ -170,16 +170,14 @@ export default class Homepage extends React.Component {
       key = [this.state.data.currentFires.area.total, this.state.options.city.lat, this.state.options.city.lng]
     }
     return (
-      <div>
       <Container id="homepageContainer" fluid={true}>
-      <Row>
+      <Row id = "row1">
       <h3> Australian Bushfires: Current Incident Area Map </h3>
       </Row>
-      <Row>
-
-        <Col sm={2} >
+      <Row id="row2">
+        <Col id="col1">
         </Col>
-        <Col sm={10}>
+        <Col id="col2row1">
           <Card className="rounded-0" id="mapFormCard">
             <CardBody>
 
@@ -189,9 +187,10 @@ export default class Homepage extends React.Component {
           </Card>
         </Col>
       </Row>
-      <Row className="flex-grow-1">
-        <Col sm={2}>
-          <Card className="rounded-0">
+
+      <Row id="row3">
+        <Col id="col1">
+          <Card className="rounded-0" id="sidebarCard">
             <CardBody>
             <p>
             {JSON.stringify(this.state.data)}
@@ -200,7 +199,7 @@ export default class Homepage extends React.Component {
             </CardBody>
           </Card>
         </Col>
-        <Col sm ={10}>
+        <Col id="col2row2">
           <Card className="rounded-0" id="mapCard">
             <CardBody>
               {(this.state.data != undefined) ?
@@ -210,8 +209,8 @@ export default class Homepage extends React.Component {
           </Card>
         </Col>
       </Row>
+
       </Container>
-      </div>
     )
   }
 }

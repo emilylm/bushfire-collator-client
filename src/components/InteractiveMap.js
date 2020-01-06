@@ -98,9 +98,10 @@ export default class InteractiveMap extends Component {
     //        <Polygon color="purple" positions={this.state.polygon} />
 
   }
+  /*
+  Alternative to re-rendering on key change..
 
   componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
     if ((this.props.lat !== prevProps.lat) || (this.props.lng !== prevProps.lng) || (this.props.size !== prevProps.size)) {
       this.setState({
         lat: this.props.lat,
@@ -111,12 +112,13 @@ export default class InteractiveMap extends Component {
       });
     }
   }
+  */
 
   render() {
     const position = [this.state.lat, this.state.lng]
     return (
       <Map ref='map' center={position} zoom={this.state.zoom}>
-      <Circle ref='circle' center={[this.state.lat, this.state.lng]} fillColor="blue" radius={this.state.radius} />
+      <Circle ref='circle' center={[this.state.lat, this.state.lng]} fillColor="red" color="red" radius={this.state.radius} />
         <TileLayer
           attribution='&amp;copy <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
