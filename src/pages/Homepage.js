@@ -1,12 +1,14 @@
 import React from 'react';
+import { Row, Col, Card, CardBody, CardHeader, Container } from 'reactstrap';
 import InteractiveMap from '../components/InteractiveMap'
-import MapOptions from '../components/MapOptions'
+import MapForm from '../components/MapForm'
+import { CITIES, STATES } from '../enums'
+
 const url = "http://localhost:3000"
 
 
-
 export default class Homepage extends React.Component {
-  constructor(props: any) {
+  constructor(props) {
   super(props);
   this.state = {
     data: undefined,
@@ -16,13 +18,15 @@ export default class Homepage extends React.Component {
       vic: undefined
     },
     options: {
-      target: "aggregate",
+      target: STATES.AGG,
+      city: CITIES.LCY
     }
   };
 
   this.getDataAll = this.getDataAll.bind(this);
   this.getData = this.getData.bind(this);
   this.mapTargetToData = this.mapTargetToData.bind(this);
+  this.updateMapOptions = this.updateMapOptions.bind(this);
   }
 
 
@@ -53,6 +57,13 @@ export default class Homepage extends React.Component {
             lastUpdated: "2020-01-05T07:20:38.519Z"
         }
       }})
+  }
+
+  updateMapOptions(options) {
+    let prevState = this.state.options;
+    prevState.target = options.target;
+    prevState.city = options.city;
+    this.setState({options: prevState})
   }
 
   mapTargetToData(target){
@@ -99,12 +110,41 @@ export default class Homepage extends React.Component {
   render() {
     return (
       <div>
-        <h1>This is the Homepage</h1>
-        <p>
-        {JSON.stringify(this.state.data)}
-        {this.state.repos.nsw}
-        </p>
-        <InteractiveMap />
+      <Container id="homepageContainer">
+      <Row>
+      <h1> Current Bushfire Area Map </h1>
+        <Col sm={12}>
+          <Card className="rounded-0">
+            <CardBody>
+
+              <MapForm options={this.state.options} updateOptions={this.updateMapOptions}/>
+
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+      <Row className="flex-grow-1">
+        <Col sm={2}>
+          <Card className="rounded-0">
+            <CardBody>
+            <p>
+            {JSON.stringify(this.state.data)}
+            {this.state.repos.nsw}
+            </p>
+            </CardBody>
+          </Card>
+        </Col>
+        <Col sm ={10}>
+          <Card className="rounded-0" id="mapCard">
+            <CardBody>
+              {(this.state.data != undefined) ?
+              <InteractiveMap size={this.state.data.currentFires.area.total} lat={this.state.options.city.lat} lng={this.state.options.city.lng}/>
+              : null}
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+      </Container>
       </div>
     )
   }
