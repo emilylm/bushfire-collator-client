@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Circle as LeafletElement} from 'leaflet';
-import { Map, TileLayer, Marker, Popup, Polygon, Circle, FeatureGroup } from "react-leaflet";
+import { Map, TileLayer, Marker, Popup, Polygon, Circle, FeatureGroup, Rectangle } from "react-leaflet";
 import { computeDestinationPoint, getAreaOfPolygon } from 'geolib';
 
 function computeRadius (size) {
@@ -85,7 +85,8 @@ export default class InteractiveMap extends Component {
       maxSize: this.props.maxSize,
       maxRadius: computeRadius(this.props.maxSize),
       polygon: computePolygon(this.props.lat, this.props.lng, this.props.size),
-      radius: computeRadius(this.props.size)
+      radius: computeRadius(this.props.size),
+      rectangleBounds: [[this.props.lat, this.props.lng], [this.props.lat, this.props.lng]]
     }
     this.onFeatureGroupAdd = this.onFeatureGroupAdd.bind(this);
   }
@@ -93,9 +94,14 @@ export default class InteractiveMap extends Component {
 
   onFeatureGroupAdd = () => {
     let bounds = this.refs.circle.leafletElement.getBounds()
+    let bounds2 = this.refs.circle2.leafletElement.getBounds()
     bounds.getSouthWest().wrap();
-    bounds.getNorthEast().wrap()
+    bounds.getNorthEast().wrap();
+    bounds2.getSouthWest().wrap();
+    bounds2.getNorthEast().wrap();
+    this.setState({rectangleBounds: bounds2})
     this.refs.map.leafletElement.fitBounds(bounds);
+    this.refs.rec.leafletElement.setBounds(bounds2);
   }
 
   /*
@@ -112,8 +118,8 @@ export default class InteractiveMap extends Component {
       this.setState({
         size: this.props.size,
         radius: computeRadius(this.props.size),
-      });
-      this.onFeatureGroupAdd()
+      }, () => this.onFeatureGroupAdd());
+
     }
   }
 
@@ -139,7 +145,8 @@ export default class InteractiveMap extends Component {
       <Map ref='map' zoomSnap={0.1} center={position} zoom={this.state.zoom}>
       <FeatureGroup ref="features" onAdd={this.onFeatureGroupAdd}>
         <Circle ref="circle" key={this.props.maxSize} center={[this.state.lat, this.state.lng]} fillColor="transparent" color="transparent" radius={this.state.maxRadius} />
-        <Circle key={this.props.size} center={[this.state.lat, this.state.lng]} fillColor="red" color="red" radius={this.state.radius} />
+        <Circle ref="circle2" key={this.props.size} center={[this.state.lat, this.state.lng]} fillColor="red" color="red" radius={this.state.radius} />
+        <Rectangle ref="rec" bounds={this.state.rectangleBounds} fillColor="blue" color="blue" />
       </FeatureGroup>
         <TileLayer
           attribution='&amp;copy <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
