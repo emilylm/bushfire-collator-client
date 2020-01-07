@@ -169,7 +169,7 @@ async getData(target) {
   render() {
     let key = []
     if (this.state.data != undefined){
-      key = [this.state.data.currentFires.area.total, this.state.options.city.lat, this.state.options.city.lng]
+      key = [this.state.options.city.lat, this.state.options.city.lng]
     }
     return (
       <Container id="homepageContainer" fluid={true}>

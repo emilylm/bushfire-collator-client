@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Circle as LeafletElement} from 'leaflet';
-import { Map, TileLayer, Marker, Popup, Polygon, Circle } from "react-leaflet";
+import { Map, TileLayer, Marker, Popup, Polygon, Circle, FeatureGroup } from "react-leaflet";
 import { computeDestinationPoint, getAreaOfPolygon } from 'geolib';
 
 function computeRadius (size) {
@@ -80,11 +80,12 @@ export default class InteractiveMap extends Component {
     this.state = {
       lat: this.props.lat,
       lng: this.props.lng,
-      zoom: 8,
+      zoom: 1,
       size: this.props.size,
       polygon: computePolygon(this.props.lat, this.props.lng, this.props.size),
       radius: computeRadius(this.props.size)
     }
+    this.onFeatureGroupAdd = this.onFeatureGroupAdd.bind(this);
   }
 
   componentDidMount(){
@@ -98,6 +99,22 @@ export default class InteractiveMap extends Component {
     //        <Polygon color="purple" positions={this.state.polygon} />
 
   }
+
+  onFeatureGroupAdd = (e) => {
+    this.refs.map.leafletElement.fitBounds(e.target.getBounds());
+    console.log(e.target.getBounds());
+  }
+
+  componentDidUpdate(prevProps) {
+    if ((this.props.size !== prevProps.size)) {
+      this.setState({
+        size: this.props.size,
+        radius: computeRadius(this.props.size),
+        zoom: 8
+      });
+    }
+  }
+
   /*
   Alternative to re-rendering on key change..
 
@@ -118,7 +135,9 @@ export default class InteractiveMap extends Component {
     const position = [this.state.lat, this.state.lng]
     return (
       <Map ref='map' center={position} zoom={this.state.zoom}>
-      <Circle ref='circle' center={[this.state.lat, this.state.lng]} fillColor="red" color="red" radius={this.state.radius} />
+      <FeatureGroup ref="features" onAdd={this.onFeatureGroupAdd}>
+        <Circle ref='circle' key={this.props.size} center={[this.state.lat, this.state.lng]} fillColor="red" color="red" radius={this.state.radius} />
+      </FeatureGroup>
         <TileLayer
           attribution='&amp;copy <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
