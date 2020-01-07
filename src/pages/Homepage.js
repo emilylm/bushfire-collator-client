@@ -19,7 +19,7 @@ export default class Homepage extends React.Component {
     },
     options: {
       target: STATES.AGG,
-      city: CITIES.LCY
+      city: CITIES.MEL
     }
   };
 
@@ -160,7 +160,7 @@ async getData(target) {
     }
     return data;
   } catch(err){
-    throw new Error('getData failed');
+    console.log(err)
   }
 }
 
@@ -200,8 +200,8 @@ async getData(target) {
         <Col id="col2row2">
           <Card className="rounded-0" id="mapCard">
             <CardBody>
-              {(this.state.data != undefined) ?
-              <InteractiveMap key={key} size={this.state.data.currentFires.area.total} lat={this.state.options.city.lat} lng={this.state.options.city.lng}/>
+              {((this.state.data != undefined) &&  (this.state.repos.aggregate != undefined)) ?
+              <InteractiveMap key={key} size={this.state.data.currentFires.area.total} lat={this.state.options.city.lat} lng={this.state.options.city.lng} maxSize={this.state.repos.aggregate.currentFires.area.total}/>
               : null}
             </CardBody>
           </Card>

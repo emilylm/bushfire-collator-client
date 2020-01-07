@@ -82,36 +82,38 @@ export default class InteractiveMap extends Component {
       lng: this.props.lng,
       zoom: 1,
       size: this.props.size,
+      maxSize: this.props.maxSize,
+      maxRadius: computeRadius(this.props.maxSize),
       polygon: computePolygon(this.props.lat, this.props.lng, this.props.size),
       radius: computeRadius(this.props.size)
     }
     this.onFeatureGroupAdd = this.onFeatureGroupAdd.bind(this);
   }
 
-  componentDidMount(){
-    console.log("radius", this.state.radius);
-    const bounds1 = this.refs.map.leafletElement.getBounds();
-    if (this.refs.circle && this.refs.circle.leafletElement) {
-      const bounds2 = this.refs.circle.leafletElement.getBounds();
-      console.log("BOUNDS", bounds2);
-    }
-    console.log("BOUNDS", bounds1)
-    //        <Polygon color="purple" positions={this.state.polygon} />
 
+  onFeatureGroupAdd = () => {
+    let bounds = this.refs.circle.leafletElement.getBounds()
+    bounds.getSouthWest().wrap();
+    bounds.getNorthEast().wrap()
+    this.refs.map.leafletElement.fitBounds(bounds);
   }
 
-  onFeatureGroupAdd = (e) => {
-    this.refs.map.leafletElement.fitBounds(e.target.getBounds());
-    console.log(e.target.getBounds());
-  }
+  /*
+  let bounds = this.refs.circle.leafletElement.getBounds()
+  bounds.getSouthWest().wrap();
+  bounds.getNorthEast().wrap();
+  let zoom = this.refs.map.leafletElement.getBoundsZoom(bounds);
+  console.log("ZOOM", zoom);
+  this.refs.map.leafletElement.setZoom(zoom);
+  console.log("BOUNDS", bounds);*/
 
   componentDidUpdate(prevProps) {
     if ((this.props.size !== prevProps.size)) {
       this.setState({
         size: this.props.size,
         radius: computeRadius(this.props.size),
-        zoom: 8
       });
+      this.onFeatureGroupAdd()
     }
   }
 
@@ -134,9 +136,10 @@ export default class InteractiveMap extends Component {
   render() {
     const position = [this.state.lat, this.state.lng]
     return (
-      <Map ref='map' center={position} zoom={this.state.zoom}>
+      <Map ref='map' zoomSnap={0.1} center={position} zoom={this.state.zoom}>
       <FeatureGroup ref="features" onAdd={this.onFeatureGroupAdd}>
-        <Circle ref='circle' key={this.props.size} center={[this.state.lat, this.state.lng]} fillColor="red" color="red" radius={this.state.radius} />
+        <Circle ref="circle" key={this.props.maxSize} center={[this.state.lat, this.state.lng]} fillColor="transparent" color="transparent" radius={this.state.maxRadius} />
+        <Circle key={this.props.size} center={[this.state.lat, this.state.lng]} fillColor="red" color="red" radius={this.state.radius} />
       </FeatureGroup>
         <TileLayer
           attribution='&amp;copy <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
