@@ -30,7 +30,7 @@ export default class MapForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentStateOption: {value: this.props.options.target.abr, label: this.props.options.target.description},
+      currentStateOption: {value: this.props.options.target.label, label: this.props.options.target.description},
       stateOptions: getStateOptions(),
       currentCityOption: {value: this.props.options.city.abr, label: this.props.options.city.name},
       cityOptions: getCityOptions()

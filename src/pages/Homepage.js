@@ -25,15 +25,16 @@ export default class Homepage extends React.Component {
 
   this.getDataAll = this.getDataAll.bind(this);
   this.getData = this.getData.bind(this);
-  this.updateMapOptions = this.updateMapOptions.bind(this);
+  this.fetchJson = this.fetchJson.bind(this);
   this.updateCitySelection = this.updateCitySelection.bind(this);
   this.updateStateSelection = this.updateStateSelection.bind(this);
   }
 
 
   componentDidMount() {
-      //this.getDataAll();
+      this.getDataAll();
       //To avoid using mock server too much in dev:
+      /*
       let reposTemp = {}
       reposTemp.vic = {currentFires:{count:{wildfire:90,nonWildfire:25,total:115},area:{total:1130550.72,unit:"hectares",unquantifiedFires:{smallAreaCount:6,mediumAreaCount:2,largeAreaCount:6,spotAreaCount:2,unknownAreaCount:0}},lastUpdated:"2020-01-06T06:35:13.759Z"}}
       reposTemp.nsw = {currentFires:{count:{wildfire:151,nonWildfire:8,total:159},area:{total:3774232,unit:"hectares",unquantifiedFires:{zeroAreaCount:46}},lastUpdated:"2020-01-06T06:35:18.792Z"}}
@@ -85,7 +86,7 @@ export default class Homepage extends React.Component {
             },
             lastUpdated: "2020-01-05T07:20:38.519Z"
         }
-      }})
+      }})*/
   }
 
   updateCitySelection(key){
@@ -100,7 +101,7 @@ export default class Homepage extends React.Component {
     prevOptions.target = STATES[key];
     console.log("STATE", JSON.stringify(prevOptions.target));
     const option = STATES[key].label;
-
+    console.log("STATE OPTION", option)
     switch(option) {
       case "vic":
         this.setState({
@@ -121,48 +122,49 @@ export default class Homepage extends React.Component {
         })
         break;
     }
-
-
-  }
-
-  updateMapOptions(options) {
-    let prevState = this.state.options;
-    prevState.target = options.target;
-    prevState.city = options.city;
-    this.setState({options: prevState})
   }
 
 
   async getDataAll(){
-    const { repos } = { ...this.state };
-    const currentState = repos;
-    currentState.aggregate = await this.getData("aggregate");
-    currentState.vic = await this.getData("vic");
-    currentState.nsw = await this.getData("nsw");
-    this.setState({ repos: currentState });
+    const repos = {}
+    console.log("REPOS1", JSON.stringify(repos))
+    const [aggregate, vic, nsw] = await Promise.all([
+      this.getData("aggregate"),
+      this.getData("vic"),
+      this.getData("nsw")
+    ])
+    repos.aggregate = aggregate
+    repos.vic = vic
+    repos.nsw = nsw
+    console.log("REPOS2", JSON.stringify(repos.aggregate));
+    this.setState({ repos: repos });
   }
 
-  async getData(target) {
-    const query = `${url}/${target}`;
-    const response = await fetch(query)
-      .then((response) => {
-            if (response.ok) {
-              return response.json();
-            } else {
-              throw new Error('Device Group Rows could not be fetched');
-            }
-          })
-          .then(data => {
-            if (target == this.state.options.target.label){
-              this.setState({ data });
-              console.log("TARGET", target)
-            }
-    			})
-          .catch(function (error) {
-            console.log(error);
-          });
-		return response;
+
+async fetchJson(url) {
+  let response = await fetch(url);
+  if (response.ok) {
+    return response.json();
+  } else {
+    throw new Error('Data fetch failed');;
   }
+}
+
+async getData(target) {
+  const query = `${url}/${target}`;
+  try {
+    let data = await this.fetchJson(query);
+    if (target == this.state.options.target.label){
+      this.setState({ data });
+      console.log("TARGET", JSON.stringify(data))
+    }
+    return data;
+  } catch(err){
+    throw new Error('getData failed');
+  }
+}
+
+
 
   render() {
     let key = []
