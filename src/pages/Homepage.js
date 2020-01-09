@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Col, Card, CardBody, CardHeader, Container } from 'reactstrap';
 import InteractiveMap from '../components/InteractiveMap';
 import MapForm from '../components/MapForm';
+import Stats from '../components/Stats';
 import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardHeader, MDBContainer } from "mdbreact";
 import { CITIES, STATES } from '../enums';
 
@@ -21,7 +22,7 @@ export default class Homepage extends React.Component {
     },
     options: {
       target: STATES.AGG,
-      city: CITIES.MEL
+      city: CITIES.PAR
     }
   };
 
@@ -179,11 +180,9 @@ async getData(target) {
           <MDBCol id="col1">
             <MDBCard className="rounded-0" id="sidebarCard">
               <MDBCardBody>
-              <MapForm options={this.state.options} updateStateSelection={this.updateStateSelection} updateCitySelection={this.updateCitySelection}/>
-              <p>
-              {JSON.stringify(this.state.data)}
-              {JSON.stringify(this.state.options.city)}
-              </p>
+              { (this.state.repos.nsw != undefined) ?
+              <Stats target={"nsw"} data={this.state.repos.nsw}/>
+              : null }
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
@@ -192,7 +191,7 @@ async getData(target) {
               <MDBCol>
               <MDBCard className="rounded-0" id="mapHeaderCard">
                 <MDBCardBody>
-                  <h6 id="heading"> Total area of fires currently burning in<b>&nbsp;{this.state.options.target.description}&nbsp;</b>over the city of<b>&nbsp;{this.state.options.city.name}&nbsp;</b></h6>
+                  <MapForm options={this.state.options} updateStateSelection={this.updateStateSelection} updateCitySelection={this.updateCitySelection}/>
                 </MDBCardBody>
               </MDBCard>
               </MDBCol>
@@ -206,8 +205,6 @@ async getData(target) {
                     : null}
                   </MDBCardBody>
                 </MDBCard>
-              </MDBCol>
-              <MDBCol id="col1">
               </MDBCol>
             </MDBRow>
           </MDBCol>

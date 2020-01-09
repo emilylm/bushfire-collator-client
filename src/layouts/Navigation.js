@@ -3,6 +3,7 @@ import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNav
 MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Homepage from '../pages/Homepage'
+import Stats from '../components/Stats'
 
 
 class Navbar extends Component {
@@ -19,13 +20,13 @@ render() {
     <Router>
       <MDBNavbar color="mdb-color darken-3" dark expand="md">
         <MDBNavbarBrand>
-          <strong className="white-text">Bushfire Area App</strong>
+          <MDBNavLink to="/"> <strong className="white-text">Bushfire Area App</strong></MDBNavLink>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
             <MDBNavItem active>
-              <MDBNavLink to="/">Map</MDBNavLink>
+              <MDBNavLink to="/Hello">Map</MDBNavLink>
             </MDBNavItem>
           </MDBNavbarNav>
           <MDBNavbarNav right>
