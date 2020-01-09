@@ -24,15 +24,15 @@ render() {
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
-          <MDBNavbarNav left>
-            <MDBNavItem active>
-              <MDBNavLink to="/Hello">Map</MDBNavLink>
-            </MDBNavItem>
-          </MDBNavbarNav>
           <MDBNavbarNav right>
             <MDBNavItem>
               <MDBNavLink className="waves-effect waves-light" to="#!">
                 <MDBIcon icon="info-circle" />
+              </MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink className="waves-effect waves-light" to="#!">
+                <MDBIcon fab icon="github" />
               </MDBNavLink>
             </MDBNavItem>
           </MDBNavbarNav>

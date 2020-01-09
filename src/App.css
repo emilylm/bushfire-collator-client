@@ -49,12 +49,13 @@
 #sidebarCard .card, #sidebarCard .card-body {
   width: 325px;
   border: 0px;
-  padding: 0.625rem;
+  padding: 0.9375rem 0.625rem;
 }
 
 #statsCard {
   max-width: 305px !important;
   padding: 0px !important;
+  margin-bottom: 15px;
 }
 #statsCard .card, {
   max-width: 305px !important;

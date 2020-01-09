@@ -181,7 +181,13 @@ async getData(target) {
             <MDBCard className="rounded-0" id="sidebarCard">
               <MDBCardBody>
               { (this.state.repos.nsw != undefined) ?
+              <Stats target={"vic & nsw"} data={this.state.repos.aggregate}/>
+              : null }
+              { (this.state.repos.nsw != undefined) ?
               <Stats target={"nsw"} data={this.state.repos.nsw}/>
+              : null }
+              { (this.state.repos.nsw != undefined) ?
+              <Stats target={"vic"} data={this.state.repos.vic}/>
               : null }
               </MDBCardBody>
             </MDBCard>
