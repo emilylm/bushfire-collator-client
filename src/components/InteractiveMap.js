@@ -145,8 +145,8 @@ export default class InteractiveMap extends Component {
       <Map ref='map' zoomSnap={0.1} center={position} zoom={this.state.zoom}>
       <FeatureGroup ref="features" onAdd={this.onFeatureGroupAdd}>
         <Circle ref="circle" key={this.props.maxSize} center={[this.state.lat, this.state.lng]} fillColor="transparent" color="transparent" radius={this.state.maxRadius} />
-        <Circle ref="circle2" key={this.props.size} center={[this.state.lat, this.state.lng]} fillColor="red" color="red" radius={this.state.radius} />
-        <Rectangle ref="rec" bounds={this.state.rectangleBounds} fillColor="blue" color="blue" />
+        <Circle ref="circle2" key={this.props.size} center={[this.state.lat, this.state.lng]} fillColor="transparent" color="transparent" radius={this.state.radius} />
+        <Rectangle ref="rec" bounds={this.state.rectangleBounds} fillColor="red" color="red" />
       </FeatureGroup>
         <TileLayer
           attribution='&amp;copy <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'

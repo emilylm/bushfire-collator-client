@@ -14,7 +14,7 @@ export const STATES = {
   AGG: {
     abr: "AGG",
     label: "aggregate",
-    description: "Both NSW & VIC"
+    description: "both NSW & VIC"
   }
 }
 

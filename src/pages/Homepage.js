@@ -1,8 +1,10 @@
 import React from 'react';
 import { Row, Col, Card, CardBody, CardHeader, Container } from 'reactstrap';
-import InteractiveMap from '../components/InteractiveMap'
-import MapForm from '../components/MapForm'
-import { CITIES, STATES } from '../enums'
+import InteractiveMap from '../components/InteractiveMap';
+import MapForm from '../components/MapForm';
+import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardHeader, MDBContainer } from "mdbreact";
+import { CITIES, STATES } from '../enums';
+
 
 const url = "http://localhost:3000"
 
@@ -172,43 +174,45 @@ async getData(target) {
       key = [this.state.options.city.lat, this.state.options.city.lng]
     }
     return (
-      <Container id="homepageContainer" fluid={true}>
-      <Row id = "row1">
-      <h3> Australian Bushfires: Current Incident Area Map </h3>
-      </Row>
-      <Row id="row2">
-          <Card className="rounded-0" id="mapFormCard">
-            <CardBody>
-
+      <MDBContainer fluid id="homepageContainer">
+        <MDBRow>
+          <MDBCol id="col1">
+            <MDBCard className="rounded-0" id="sidebarCard">
+              <MDBCardBody>
               <MapForm options={this.state.options} updateStateSelection={this.updateStateSelection} updateCitySelection={this.updateCitySelection}/>
-
-            </CardBody>
-          </Card>
-      </Row>
-
-      <Row id="row3">
-        <Col id="col1">
-          <Card className="rounded-0" id="sidebarCard">
-            <CardBody>
-            <p>
-            {JSON.stringify(this.state.data)}
-            {JSON.stringify(this.state.options.city)}
-            </p>
-            </CardBody>
-          </Card>
-        </Col>
-        <Col id="col2row2">
-          <Card className="rounded-0" id="mapCard">
-            <CardBody>
-              {((this.state.data != undefined) &&  (this.state.repos.aggregate != undefined)) ?
-              <InteractiveMap key={key} size={this.state.data.currentFires.area.total} lat={this.state.options.city.lat} lng={this.state.options.city.lng} maxSize={this.state.repos.aggregate.currentFires.area.total}/>
-              : null}
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-
-      </Container>
+              <p>
+              {JSON.stringify(this.state.data)}
+              {JSON.stringify(this.state.options.city)}
+              </p>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+          <MDBCol>
+            <MDBRow id="row2">
+              <MDBCol>
+              <MDBCard className="rounded-0" id="mapHeaderCard">
+                <MDBCardBody>
+                  <h6 id="heading"> Total area of fires currently burning in<b>&nbsp;{this.state.options.target.description}&nbsp;</b>over the city of<b>&nbsp;{this.state.options.city.name}&nbsp;</b></h6>
+                </MDBCardBody>
+              </MDBCard>
+              </MDBCol>
+            </MDBRow>
+            <MDBRow>
+              <MDBCol>
+                <MDBCard className="rounded-0" id="mapCard">
+                  <MDBCardBody>
+                    {((this.state.data != undefined) &&  (this.state.repos.aggregate != undefined)) ?
+                    <InteractiveMap key={key} size={this.state.data.currentFires.area.total} lat={this.state.options.city.lat} lng={this.state.options.city.lng} maxSize={this.state.repos.aggregate.currentFires.area.total}/>
+                    : null}
+                  </MDBCardBody>
+                </MDBCard>
+              </MDBCol>
+              <MDBCol id="col1">
+              </MDBCol>
+            </MDBRow>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
     )
   }
 }

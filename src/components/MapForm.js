@@ -54,7 +54,7 @@ export default class MapForm extends React.Component {
   render() {
     return (
       <div>
-        <Form inline>
+        <Form >
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <Label className="mr-sm-2">Showing the <b>&nbsp;total area of fires currently burning&nbsp;</b> in: </Label>
           <Select id="stateSelect" options={this.state.stateOptions} onChange={this.updateStateOption.bind(this)} value={this.state.currentStateOption || ""} styles={customStylesState}/>

@@ -1,3 +1,7 @@
+.page-content {
+  height: 100vh;
+  width: 100%;
+}
 
 .leaflet-container {
   width: 100%;
@@ -12,39 +16,50 @@
 #homepageContainer {
   display: flex;
   flex-flow: column;
-  height: 100%;
+  height: 100vh;
+  padding: 0px;
 }
 
+.row {
+  margin-right: 0px;
+  margin-left: 0px;
+}
 
-
+#heading {
+  margin-bottom: 0px
+}
+/*
 #row1 {
   height: 50px;
   align-content: center;
+  padding: 0.625rem;
 }
+*/
+
 #row2 {
-  height: 50px;
-  align-content: center;
-  margin-bottom: 3px;
+  height: 45px;
 }
 
 #col1 {
-  -ms-flex: 0 0 275px;
-  flex: 0 0 275px;
-  margin-right: 3px;
+  -ms-flex: 0 0 250px;
+  flex: 0 0 250px;
 }
 
 #sidebarCard .card, #sidebarCard .card-body {
-  width: 275px;
-  border-bottom: 0px;
+  width: 250px;
+  border: 0px;
   padding: 0.625rem;
 }
 #mapCard {
-  height: auto;
+  height: 100%;
+  box-shadow: none;
 }
 
 #sidebarCard {
   width: auto;
   height: 100%;
+  /*
+  background-color: #2e3951;*/
 }
 
 
@@ -53,6 +68,7 @@
   padding-left: 0px;
   padding-top: 0px;
   padding-bottom: 0px;
+  box-shadow: none;
 }
 
 #mapFormCard {
@@ -62,4 +78,22 @@
 
 #mapFormCard .card-body {
   padding: 0.625rem;
+}
+
+.navbar {
+  position: relative;
+  z-index: 10;
+}
+
+#mapHeaderCard .card-body {
+  padding: 0.625rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#mapHeaderCard {
+  height: 100%;
+  border-bottom: 1px solid #d0d6e2;
+  box-shadow: none;
 }
