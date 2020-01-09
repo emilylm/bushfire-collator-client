@@ -29,7 +29,7 @@ export default class Stats extends React.Component {
     return (
       <MDBCard id="statsCard">
         <MDBCardHeader>
-          <strong>{this.state.target.toUpperCase()}</strong>
+          {this.state.target.toUpperCase()}
         </MDBCardHeader>
         <MDBCardBody>
           <MDBTable small borderless id="statsTable">
