@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b19689a301f9659e3c35ea2db240ca5f",
+    "revision": "7942eab692ab1658929c8f975dc143d1",
     "url": "/bushfire-collator-client/index.html"
   },
   {
