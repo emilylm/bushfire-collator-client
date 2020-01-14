@@ -20,7 +20,7 @@ render() {
     <Router>
       <MDBNavbar color="mdb-color darken-3" dark expand="md">
         <MDBNavbarBrand>
-          <MDBNavLink to="/"> <strong className="white-text">Bushfire Area Map</strong></MDBNavLink>
+          <MDBNavLink to="/bushfire-collator-client/"> <strong className="white-text">Bushfire Area Map</strong></MDBNavLink>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
@@ -40,7 +40,7 @@ render() {
       </MDBNavbar>
 
       <div id="page-content">
-          <Route exact path="/" >
+          <Route exact path="/bushfire-collator-client/" >
             <Homepage />
           </Route>
       </div>
