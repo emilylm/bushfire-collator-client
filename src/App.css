@@ -47,9 +47,11 @@
 
 
 #sidebarCard .card, #sidebarCard .card-body {
-  width: 325px;
+  /* BUILD IGNORE width: 325px;*/
   border: 0px;
-  padding: 0.9375rem 0.625rem;
+  /* BUILD IGNORE padding: 0.9375rem 0.625rem;
+  padding: 51px 0.625rem;*/
+
 }
 
 #statsCard {
