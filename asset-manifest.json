@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/bushfire-collator-client/static/css/main.cbec76f9.chunk.css",
-    "main.js": "/bushfire-collator-client/static/js/main.9f4d6927.chunk.js",
-    "main.js.map": "/bushfire-collator-client/static/js/main.9f4d6927.chunk.js.map",
+    "main.css": "/bushfire-collator-client/static/css/main.3a5b8697.chunk.css",
+    "main.js": "/bushfire-collator-client/static/js/main.4f53e31d.chunk.js",
+    "main.js.map": "/bushfire-collator-client/static/js/main.4f53e31d.chunk.js.map",
     "runtime-main.js": "/bushfire-collator-client/static/js/runtime-main.5e257e12.js",
     "runtime-main.js.map": "/bushfire-collator-client/static/js/runtime-main.5e257e12.js.map",
     "static/css/2.3afc4269.chunk.css": "/bushfire-collator-client/static/css/2.3afc4269.chunk.css",
     "static/js/2.5482744d.chunk.js": "/bushfire-collator-client/static/js/2.5482744d.chunk.js",
     "static/js/2.5482744d.chunk.js.map": "/bushfire-collator-client/static/js/2.5482744d.chunk.js.map",
     "index.html": "/bushfire-collator-client/index.html",
-    "precache-manifest.3f001368ab4cac37f310129a22dd80ad.js": "/bushfire-collator-client/precache-manifest.3f001368ab4cac37f310129a22dd80ad.js",
+    "precache-manifest.4cffa7c911f350411394bd62ae1bac45.js": "/bushfire-collator-client/precache-manifest.4cffa7c911f350411394bd62ae1bac45.js",
     "service-worker.js": "/bushfire-collator-client/service-worker.js",
     "static/css/2.3afc4269.chunk.css.map": "/bushfire-collator-client/static/css/2.3afc4269.chunk.css.map",
-    "static/css/main.cbec76f9.chunk.css.map": "/bushfire-collator-client/static/css/main.cbec76f9.chunk.css.map",
+    "static/css/main.3a5b8697.chunk.css.map": "/bushfire-collator-client/static/css/main.3a5b8697.chunk.css.map",
     "static/js/2.5482744d.chunk.js.LICENSE": "/bushfire-collator-client/static/js/2.5482744d.chunk.js.LICENSE",
     "static/media/mdb.css": "/bushfire-collator-client/static/media/arrow_right.8ef6a08c.svg",
     "static/media/all.min.css": "/bushfire-collator-client/static/media/fa-solid-900.f6121be5.woff2"
@@ -21,7 +21,7 @@
     "static/js/runtime-main.5e257e12.js",
     "static/css/2.3afc4269.chunk.css",
     "static/js/2.5482744d.chunk.js",
-    "static/css/main.cbec76f9.chunk.css",
-    "static/js/main.9f4d6927.chunk.js"
+    "static/css/main.3a5b8697.chunk.css",
+    "static/js/main.4f53e31d.chunk.js"
   ]
 }

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/bushfire-collator-client/precache-manifest.3f001368ab4cac37f310129a22dd80ad.js"
+  "/bushfire-collator-client/precache-manifest.4cffa7c911f350411394bd62ae1bac45.js"
 );
 
 self.addEventListener('message', (event) => {
