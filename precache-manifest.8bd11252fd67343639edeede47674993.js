@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6e66a7851061391fedebef10d5b28a68",
+    "revision": "0168243fa75e58d5f31c445c4b62c8c4",
     "url": "/bushfire-collator-client/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/bushfire-collator-client/static/css/2.3afc4269.chunk.css"
   },
   {
-    "revision": "8cb4ef2d04981bd8ad41",
+    "revision": "43b3152049bfcce31980",
     "url": "/bushfire-collator-client/static/css/main.cbec76f9.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/bushfire-collator-client/static/js/2.5482744d.chunk.js.LICENSE"
   },
   {
-    "revision": "8cb4ef2d04981bd8ad41",
-    "url": "/bushfire-collator-client/static/js/main.fd812b11.chunk.js"
+    "revision": "43b3152049bfcce31980",
+    "url": "/bushfire-collator-client/static/js/main.caef441d.chunk.js"
   },
   {
     "revision": "3586cce8769a94f94570",

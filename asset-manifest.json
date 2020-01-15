@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/bushfire-collator-client/static/css/main.cbec76f9.chunk.css",
-    "main.js": "/bushfire-collator-client/static/js/main.fd812b11.chunk.js",
-    "main.js.map": "/bushfire-collator-client/static/js/main.fd812b11.chunk.js.map",
+    "main.js": "/bushfire-collator-client/static/js/main.caef441d.chunk.js",
+    "main.js.map": "/bushfire-collator-client/static/js/main.caef441d.chunk.js.map",
     "runtime-main.js": "/bushfire-collator-client/static/js/runtime-main.5e257e12.js",
     "runtime-main.js.map": "/bushfire-collator-client/static/js/runtime-main.5e257e12.js.map",
     "static/css/2.3afc4269.chunk.css": "/bushfire-collator-client/static/css/2.3afc4269.chunk.css",
     "static/js/2.5482744d.chunk.js": "/bushfire-collator-client/static/js/2.5482744d.chunk.js",
     "static/js/2.5482744d.chunk.js.map": "/bushfire-collator-client/static/js/2.5482744d.chunk.js.map",
     "index.html": "/bushfire-collator-client/index.html",
-    "precache-manifest.f30f61f28b4656c5cf99d87986ffa137.js": "/bushfire-collator-client/precache-manifest.f30f61f28b4656c5cf99d87986ffa137.js",
+    "precache-manifest.8bd11252fd67343639edeede47674993.js": "/bushfire-collator-client/precache-manifest.8bd11252fd67343639edeede47674993.js",
     "service-worker.js": "/bushfire-collator-client/service-worker.js",
     "static/css/2.3afc4269.chunk.css.map": "/bushfire-collator-client/static/css/2.3afc4269.chunk.css.map",
     "static/css/main.cbec76f9.chunk.css.map": "/bushfire-collator-client/static/css/main.cbec76f9.chunk.css.map",
@@ -22,6 +22,6 @@
     "static/css/2.3afc4269.chunk.css",
     "static/js/2.5482744d.chunk.js",
     "static/css/main.cbec76f9.chunk.css",
-    "static/js/main.fd812b11.chunk.js"
+    "static/js/main.caef441d.chunk.js"
   ]
 }
