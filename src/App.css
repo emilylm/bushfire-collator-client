@@ -181,7 +181,7 @@
 
 #sidebarHead #shContent {
   position: absolute;
-  bottom: 0;
-  left: 15px;
+  bottom: 1px;
+  left: 16px;
   color: #616970;
 }
