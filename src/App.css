@@ -73,6 +73,9 @@
   padding-left: 10px !important;
   padding-top: 2px !important;
   padding-bottom: 2px !important;
+  font-size: 0.9rem;
+  /*font-weight: 450;*/
+  /*background-color: white;*/
 }
 
 #mapCard {
@@ -85,8 +88,13 @@
   height: 100%;
   position: relative;
   z-index: 9998;
+  box-shadow: none;
   /*
   background-color: #2e3951;*/
+}
+
+#sidebarCard .card-body:first-of-type {
+  padding: 0.6875rem;
 }
 
 
@@ -140,3 +148,28 @@
   text-align: right;
 }
 */
+
+#statsTimestamp {
+  font-size: 0.75rem;
+  color: grey;
+  text-align: right;
+}
+
+#sidebarHead {
+  height: 52px;
+  box-shadow: none;
+  margin-right: 12px;
+  margin-left: 12px;
+  border-bottom: 1px solid #d2d5d8;
+}
+
+#sidebarHead .card-body {
+  padding: none;
+}
+
+#sidebarHead #shContent {
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  color: #616970;
+}

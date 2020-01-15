@@ -178,6 +178,11 @@ async getData(target) {
       <MDBContainer fluid id="homepageContainer">
         <MDBRow>
           <MDBCol id="col1">
+          <MDBCard className="rounded-0" id="sidebarHead">
+            <MDBCardBody>
+            <span id="shContent">STATS</span>
+            </MDBCardBody>
+          </MDBCard>
             <MDBCard className="rounded-0" id="sidebarCard">
               <MDBCardBody>
               { (this.state.repos.nsw != undefined) ?
