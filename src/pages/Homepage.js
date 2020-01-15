@@ -7,7 +7,7 @@ import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardHeader, MDBContainer } fro
 import { CITIES, STATES } from '../enums';
 
 
-const url = "http://ec2-13-236-137-23.ap-southeast-2.compute.amazonaws.com:3000"
+const url = "https://firedatacollator.emilylm.me/"
 
 
 export default class Homepage extends React.Component {
