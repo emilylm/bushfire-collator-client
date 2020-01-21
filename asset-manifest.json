@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/bushfire-collator-client/static/css/main.407224e1.chunk.css",
-    "main.js": "/bushfire-collator-client/static/js/main.4f53e31d.chunk.js",
-    "main.js.map": "/bushfire-collator-client/static/js/main.4f53e31d.chunk.js.map",
+    "main.css": "/bushfire-collator-client/static/css/main.1e4594ea.chunk.css",
+    "main.js": "/bushfire-collator-client/static/js/main.e89f2aeb.chunk.js",
+    "main.js.map": "/bushfire-collator-client/static/js/main.e89f2aeb.chunk.js.map",
     "runtime-main.js": "/bushfire-collator-client/static/js/runtime-main.5e257e12.js",
     "runtime-main.js.map": "/bushfire-collator-client/static/js/runtime-main.5e257e12.js.map",
     "static/css/2.3afc4269.chunk.css": "/bushfire-collator-client/static/css/2.3afc4269.chunk.css",
-    "static/js/2.5482744d.chunk.js": "/bushfire-collator-client/static/js/2.5482744d.chunk.js",
-    "static/js/2.5482744d.chunk.js.map": "/bushfire-collator-client/static/js/2.5482744d.chunk.js.map",
+    "static/js/2.a857b58a.chunk.js": "/bushfire-collator-client/static/js/2.a857b58a.chunk.js",
+    "static/js/2.a857b58a.chunk.js.map": "/bushfire-collator-client/static/js/2.a857b58a.chunk.js.map",
     "index.html": "/bushfire-collator-client/index.html",
-    "precache-manifest.fb9fea35482a8ab5c6176d37709b3ca4.js": "/bushfire-collator-client/precache-manifest.fb9fea35482a8ab5c6176d37709b3ca4.js",
+    "precache-manifest.179691f7b3073dd24442e77788ca1cc3.js": "/bushfire-collator-client/precache-manifest.179691f7b3073dd24442e77788ca1cc3.js",
     "service-worker.js": "/bushfire-collator-client/service-worker.js",
     "static/css/2.3afc4269.chunk.css.map": "/bushfire-collator-client/static/css/2.3afc4269.chunk.css.map",
-    "static/css/main.407224e1.chunk.css.map": "/bushfire-collator-client/static/css/main.407224e1.chunk.css.map",
-    "static/js/2.5482744d.chunk.js.LICENSE": "/bushfire-collator-client/static/js/2.5482744d.chunk.js.LICENSE",
+    "static/css/main.1e4594ea.chunk.css.map": "/bushfire-collator-client/static/css/main.1e4594ea.chunk.css.map",
+    "static/js/2.a857b58a.chunk.js.LICENSE": "/bushfire-collator-client/static/js/2.a857b58a.chunk.js.LICENSE",
     "static/media/mdb.css": "/bushfire-collator-client/static/media/arrow_right.8ef6a08c.svg",
     "static/media/all.min.css": "/bushfire-collator-client/static/media/fa-solid-900.f6121be5.woff2"
   },
   "entrypoints": [
     "static/js/runtime-main.5e257e12.js",
     "static/css/2.3afc4269.chunk.css",
-    "static/js/2.5482744d.chunk.js",
-    "static/css/main.407224e1.chunk.css",
-    "static/js/main.4f53e31d.chunk.js"
+    "static/js/2.a857b58a.chunk.js",
+    "static/css/main.1e4594ea.chunk.css",
+    "static/js/main.e89f2aeb.chunk.js"
   ]
 }

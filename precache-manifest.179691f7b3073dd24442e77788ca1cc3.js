@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f713dd986ba074f244807556114d3a30",
+    "revision": "7b1a8c95c520648e18b464fb226bd99f",
     "url": "/bushfire-collator-client/index.html"
   },
   {
-    "revision": "0312459124bfcfff1383",
+    "revision": "f6e3d7bb0f4fe6d0c006",
     "url": "/bushfire-collator-client/static/css/2.3afc4269.chunk.css"
   },
   {
-    "revision": "b32c06a8869b41c84fab",
-    "url": "/bushfire-collator-client/static/css/main.407224e1.chunk.css"
+    "revision": "d980a0e5136a906a8301",
+    "url": "/bushfire-collator-client/static/css/main.1e4594ea.chunk.css"
   },
   {
-    "revision": "0312459124bfcfff1383",
-    "url": "/bushfire-collator-client/static/js/2.5482744d.chunk.js"
+    "revision": "f6e3d7bb0f4fe6d0c006",
+    "url": "/bushfire-collator-client/static/js/2.a857b58a.chunk.js"
   },
   {
     "revision": "5d920c0943cfb5aea5574725f145993b",
-    "url": "/bushfire-collator-client/static/js/2.5482744d.chunk.js.LICENSE"
+    "url": "/bushfire-collator-client/static/js/2.a857b58a.chunk.js.LICENSE"
   },
   {
-    "revision": "b32c06a8869b41c84fab",
-    "url": "/bushfire-collator-client/static/js/main.4f53e31d.chunk.js"
+    "revision": "d980a0e5136a906a8301",
+    "url": "/bushfire-collator-client/static/js/main.e89f2aeb.chunk.js"
   },
   {
     "revision": "3586cce8769a94f94570",
