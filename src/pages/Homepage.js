@@ -5,10 +5,39 @@ import MapForm from '../components/MapForm';
 import Stats from '../components/Stats';
 import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardHeader, MDBContainer } from "mdbreact";
 import { CITIES, STATES } from '../enums';
+import FlipMove from 'react-flip-move';
 
 
 const url = "https://firedatacollator.emilylm.me"
 
+const ORDERS ={
+  aggregate: 1,
+  nsw: 2,
+  vic: 3
+}
+
+const updateOrder = (target, order) => {
+  order.unshift(
+    order.splice(
+      order.findIndex(
+        item => item == target),
+    1)[0]
+  )
+
+  return order
+}
+
+const StatsList = ({order, repos}) => (
+      <FlipMove
+      staggerDurationBy="30"
+      duration={500}
+      enterAnimation={'fade'}
+      leaveAnimation={'fade'}>
+        {order.map(item => (
+          <Stats key={ORDERS[item]} target={item} data={repos[item]} isOpen={(item === order[0])} first={order[0]}/>
+        ))}
+      </FlipMove>
+);
 
 export default class Homepage extends React.Component {
   constructor(props) {
@@ -23,7 +52,8 @@ export default class Homepage extends React.Component {
     options: {
       target: STATES.AGG,
       city: CITIES.PAR
-    }
+    },
+    order: ['aggregate', 'vic', 'nsw']
   };
 
   this.getDataAll = this.getDataAll.bind(this);
@@ -101,27 +131,37 @@ export default class Homepage extends React.Component {
 
   updateStateSelection(key){
     let prevOptions = this.state.options;
+    let order = this.state.order;
     prevOptions.target = STATES[key];
     console.log("STATE", JSON.stringify(prevOptions.target));
     const option = STATES[key].label;
     console.log("STATE OPTION", option)
     switch(option) {
       case "vic":
+        order = updateOrder('vic', order)
+        console.log("ORDER", JSON.stringify(order))
         this.setState({
           data: this.state.repos.vic,
-          options: prevOptions
+          options: prevOptions,
+          order
         })
         break;
       case "nsw":
+        order = updateOrder('nsw', order)
+        console.log("ORDER", JSON.stringify(order))
         this.setState({
           data: this.state.repos.nsw,
-          options: prevOptions
+          options: prevOptions,
+          order
         })
         break;
       case "aggregate":
+        order = updateOrder('aggregate', order)
+        console.log("ORDER", JSON.stringify(order))
         this.setState({
           data: this.state.repos.aggregate,
-          options: prevOptions
+          options: prevOptions,
+          order
         })
         break;
     }
@@ -185,15 +225,10 @@ async getData(target) {
           </MDBCard>
             <MDBCard className="rounded-0" id="sidebarCard">
               <MDBCardBody>
-              { (this.state.repos.nsw != undefined) ?
-              <Stats target={"vic & nsw"} data={this.state.repos.aggregate}/>
-              : null }
-              { (this.state.repos.nsw != undefined) ?
-              <Stats target={"nsw"} data={this.state.repos.nsw}/>
-              : null }
-              { (this.state.repos.nsw != undefined) ?
-              <Stats target={"vic"} data={this.state.repos.vic}/>
-              : null }
+              { ((this.state.repos.nsw != undefined) && (this.state.repos.nsw != undefined) && (this.state.repos.nsw != undefined)) ?
+              <StatsList order={this.state.order} repos={this.state.repos}/>
+              : null
+              }
               </MDBCardBody>
             </MDBCard>
           </MDBCol>

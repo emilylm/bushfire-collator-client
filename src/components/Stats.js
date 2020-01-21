@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBCard, MDBCardBody, MDBCardHeader, MDBTable, MDBTableBody } from "mdbreact";
+import { MDBCard, MDBBtn, MDBIcon, MDBCardBody, MDBCardHeader, MDBTable, MDBTableBody } from "mdbreact";
 import { CITIES, STATES, MONTHS } from '../enums';
 
 
@@ -68,8 +68,25 @@ export default class Stats extends React.Component {
       target: this.props.target,
       data: this.props.data,
       size: formatSize(this.props.data.currentFires.area.total),
-      date: getDateString(this.props.data.currentFires.dateGenerated)
+      date: getDateString(this.props.data.currentFires.dateGenerated),
+      isOpen: this.props.isOpen
+
+    };
+    this.toggleCard = this.toggleCard.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if ((this.props.first !== prevProps.first)) {
+      setTimeout(() => {
+        this.setState({isOpen: this.props.isOpen});
+      }, 480);
+
     }
+  }
+
+  toggleCard(){
+    const isOpen = !this.state.isOpen;
+    this.setState({isOpen});
   }
 
   render() {
@@ -77,10 +94,14 @@ export default class Stats extends React.Component {
     return (
       <MDBCard id="statsCard">
         <MDBCardHeader>
-          {(target == "vic & nsw") ? "Both " + this.state.target.toUpperCase()
-          : this.state.target.toUpperCase()}
+          <span>{(target == "aggregate") ? "Both VIC & NSW"
+          : this.state.target.toUpperCase()}</span>
+          <button type="button" className="btn btn-circle btn-circle-sm m-1" id="collapseBtn" onClick={this.toggleCard.bind(this)}>
+          {this.state.isOpen ? <i class="fa fa-chevron-up fa-sm" id="upIcon"></i>
+            : <i class="fa fa-chevron-down fa-sm" id="downIcon"></i>}</button>
         </MDBCardHeader>
-        <MDBCardBody>
+        {this.state.isOpen ?
+          <MDBCardBody>
           <MDBTable small borderless id="statsTable">
             <MDBTableBody>
               <tr>
@@ -97,6 +118,7 @@ export default class Stats extends React.Component {
             <span id="statsTimestamp">{"LAST UPDATED: " + this.state.date.toUpperCase()}</span>
           </div>
         </MDBCardBody>
+        : null}
       </MDBCard>
     )
   }
