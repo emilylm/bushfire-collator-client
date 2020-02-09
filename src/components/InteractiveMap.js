@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Circle as LeafletElement} from 'leaflet';
-import { Map, TileLayer, Marker, Popup, Polygon, Circle, FeatureGroup, Rectangle } from "react-leaflet";
+import { Map, TileLayer, Marker, Popup, Polygon, Circle, FeatureGroup, Rectangle, GeoJSON } from "react-leaflet";
 import { computeDestinationPoint, getAreaOfPolygon } from 'geolib';
 
 function computeRadius (size) {
@@ -80,6 +80,7 @@ export default class InteractiveMap extends Component {
     this.state = {
       lat: this.props.lat,
       lng: this.props.lng,
+      poly: this.props.poly,
       zoom: 1,
       size: this.props.size,
       maxSize: this.props.maxSize,
@@ -91,6 +92,10 @@ export default class InteractiveMap extends Component {
     this.onFeatureGroupAdd = this.onFeatureGroupAdd.bind(this);
   }
 
+  componentDidMount(){
+    console.log(JSON.stringify(this.props.poly))
+  }
+
 
   onFeatureGroupAdd = () => {
     let bounds = this.refs.circle.leafletElement.getBounds()
@@ -100,8 +105,13 @@ export default class InteractiveMap extends Component {
     bounds2.getSouthWest().wrap();
     bounds2.getNorthEast().wrap();
     this.setState({rectangleBounds: bounds2})
-    this.refs.map.leafletElement.fitBounds(bounds);
-    this.refs.rec.leafletElement.setBounds(bounds2);
+    //this.refs.map.leafletElement.fitBounds(bounds);
+    //this.refs.rec.leafletElement.setBounds(bounds2);
+
+    let bounds3 = this.refs.poly.leafletElement.getBounds()
+    bounds3.getSouthWest().wrap();
+    bounds3.getNorthEast().wrap();
+    this.refs.map.leafletElement.fitBounds(bounds3);
   }
 
   /*
@@ -119,7 +129,11 @@ export default class InteractiveMap extends Component {
         size: this.props.size,
         radius: computeRadius(this.props.size),
       }, () => this.onFeatureGroupAdd());
-
+    }
+    if ((this.props.poly !== prevProps.poly)) {
+      this.setState({
+        poly: this.props.poly,
+      }, () => this.onFeatureGroupAdd());
     }
   }
 
@@ -146,7 +160,9 @@ export default class InteractiveMap extends Component {
       <FeatureGroup ref="features" onAdd={this.onFeatureGroupAdd}>
         <Circle ref="circle" key={this.props.maxSize} center={[this.state.lat, this.state.lng]} fillColor="transparent" color="transparent" radius={this.state.maxRadius} />
         <Circle ref="circle2" key={this.props.size} center={[this.state.lat, this.state.lng]} fillColor="transparent" color="transparent" radius={this.state.radius} />
-        <Rectangle ref="rec" bounds={this.state.rectangleBounds} fillColor="red" color="red" />
+        <Rectangle ref="rec" bounds={this.state.rectangleBounds} fillColor="transparent" color="transparent"/>
+        <GeoJSON ref="poly" data={this.props.maxPoly} fillColor="transparent" color="transparent"/>
+        <GeoJSON key={this.state.size} data={this.state.poly} fillColor="red" color="red" weight="1"/>
       </FeatureGroup>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'

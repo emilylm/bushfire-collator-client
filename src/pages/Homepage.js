@@ -6,6 +6,17 @@ import Stats from '../components/Stats';
 import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardHeader, MDBContainer } from "mdbreact";
 import { CITIES, STATES } from '../enums';
 import FlipMove from 'react-flip-move';
+import {default as melNSW} from '../assets/mel-nsw.geojson';
+import {default as melVIC} from '../assets/mel-vic.geojson';
+import {default as melAGG} from '../assets/mel-agg.geojson';
+import {default as sydNSW} from '../assets/syd-nsw.geojson';
+import {default as sydVIC} from '../assets/syd-vic.geojson';
+import {default as sydAGG} from '../assets/syd-agg.geojson';
+import {default as bneNSW} from '../assets/bne-nsw.geojson';
+import {default as bneVIC} from '../assets/bne-vic.geojson';
+import {default as bneAGG} from '../assets/bne-agg.geojson';
+
+
 
 
 const url = "https://firedatacollator.emilylm.me"
@@ -49,23 +60,83 @@ export default class Homepage extends React.Component {
       nsw: undefined,
       vic: undefined
     },
+    MEL: {
+      aggregate: undefined,
+      nsw: undefined,
+      vic: undefined
+    },
+    SYD: {
+      aggregate: undefined,
+      nsw: undefined,
+      vic: undefined
+    },
+    BNE: {
+      aggregate: undefined,
+      nsw: undefined,
+      vic: undefined
+    },
+    DRW: {
+      aggregate: undefined,
+      nsw: undefined,
+      vic: undefined
+    },
+    HBA: {
+      aggregate: undefined,
+      nsw: undefined,
+      vic: undefined
+    },
+    CAN: {
+      aggregate: undefined,
+      nsw: undefined,
+      vic: undefined
+    },
+    PER: {
+      aggregate: undefined,
+      nsw: undefined,
+      vic: undefined
+    },
+    ADL: {
+      aggregate: undefined,
+      nsw: undefined,
+      vic: undefined
+    },
     options: {
       target: STATES.AGG,
-      city: CITIES.PAR
+      city: CITIES.SYD
     },
     order: ['aggregate', 'vic', 'nsw']
   };
 
   this.getDataAll = this.getDataAll.bind(this);
   this.getData = this.getData.bind(this);
+  this.getPolys = this.getPolys.bind(this);
   this.fetchJson = this.fetchJson.bind(this);
   this.updateCitySelection = this.updateCitySelection.bind(this);
   this.updateStateSelection = this.updateStateSelection.bind(this);
   }
 
 
+
+
+
+
+
   componentDidMount() {
       this.getDataAll();
+      /*let melTemp = {};
+      melTemp.vic = melVIC;
+      melTemp.nsw = melNSW;
+      melTemp.aggregate = melAGG;
+      let sydTemp = {};
+      sydTemp.vic = sydVIC;
+      sydTemp.nsw = sydNSW;
+      sydTemp.aggregate = sydAGG;
+      let bneTemp = {};
+      bneTemp.vic = bneVIC;
+      bneTemp.nsw = bneNSW;
+      bneTemp.aggregate = bneAGG;
+      this.setState({MEL: melTemp, SYD: sydTemp, BNE: bneTemp})
+      */
       //To avoid using mock server too much in dev:
       /*
       let reposTemp = {}
@@ -167,20 +238,37 @@ export default class Homepage extends React.Component {
     }
   }
 
+  async getPolys() {
+    const query = `${url}/polys`;
+    try {
+      let data = await this.fetchJson(query);
+      return data;
+    } catch(err){
+      console.log(err)
+    }
+  }
 
   async getDataAll(){
+
     const repos = {}
     console.log("REPOS1", JSON.stringify(repos))
+    try {
     const [aggregate, vic, nsw] = await Promise.all([
       this.getData("aggregate"),
       this.getData("vic"),
       this.getData("nsw")
     ])
+    const polys = await this.getPolys();
+    let {MEL, SYD, BNE, ADL, PER, HBA, CAN, DRW} = polys
+    this.setState({MEL, SYD, BNE, ADL, PER, HBA, CAN, DRW})
     repos.aggregate = aggregate
     repos.vic = vic
     repos.nsw = nsw
     console.log("REPOS2", JSON.stringify(repos.aggregate));
     this.setState({ repos: repos });
+    } catch(err){
+      console.log(err)
+    }
   }
 
 
@@ -246,9 +334,10 @@ async getData(target) {
               <MDBCol>
                 <MDBCard className="rounded-0" id="mapCard">
                   <MDBCardBody>
-                    {((this.state.data != undefined) &&  (this.state.repos.aggregate != undefined)) ?
-                    <InteractiveMap key={key} size={this.state.data.currentFires.area.total} lat={this.state.options.city.lat} lng={this.state.options.city.lng} maxSize={this.state.repos.aggregate.currentFires.area.total}/>
+                    {((this.state.data != undefined) &&  (this.state.repos.aggregate != undefined) && (this.state.MEL.aggregate != undefined)) ?
+                    <InteractiveMap key={key} size={this.state.data.currentFires.area.total} lat={this.state.options.city.lat} lng={this.state.options.city.lng} maxSize={this.state.repos.aggregate.currentFires.area.total} poly={this.state[`${this.state.options.city.abr}`][`${this.state.options.target.label}`]} maxPoly={this.state[`${this.state.options.city.abr}`].aggregate} city={this.state.options.city}/>
                     : null}
+
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>

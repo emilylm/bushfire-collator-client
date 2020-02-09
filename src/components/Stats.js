@@ -79,7 +79,7 @@ export default class Stats extends React.Component {
     if ((this.props.first !== prevProps.first)) {
       setTimeout(() => {
         this.setState({isOpen: this.props.isOpen});
-      }, 480);
+      }, 0);
 
     }
   }
