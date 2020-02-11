@@ -102,7 +102,7 @@ export default class Homepage extends React.Component {
     },
     options: {
       target: STATES.AGG,
-      city: CITIES.SYD
+      city: CITIES.MEL
     },
     order: ['aggregate', 'vic', 'nsw']
   };
@@ -110,6 +110,7 @@ export default class Homepage extends React.Component {
   this.getDataAll = this.getDataAll.bind(this);
   this.getData = this.getData.bind(this);
   this.getPolys = this.getPolys.bind(this);
+  this.getPolyMel = this.getPolyMel.bind(this);
   this.fetchJson = this.fetchJson.bind(this);
   this.updateCitySelection = this.updateCitySelection.bind(this);
   this.updateStateSelection = this.updateStateSelection.bind(this);
@@ -238,6 +239,16 @@ export default class Homepage extends React.Component {
     }
   }
 
+  async getPolyMel() {
+    const query = `${url}/polys/mel`;
+    try {
+      let data = await this.fetchJson(query);
+      return data;
+    } catch(err){
+      console.log(err)
+    }
+  }
+
   async getPolys() {
     const query = `${url}/polys`;
     try {
@@ -253,14 +264,23 @@ export default class Homepage extends React.Component {
     const repos = {}
     console.log("REPOS1", JSON.stringify(repos))
     try {
+    let mel_data = {}
+    const mel = await this.getPolyMel();
+    mel_data.vic = mel.vic
+    mel_data.nsw = mel.nsw
+    mel_data.aggregate = mel.aggregate
+    this.setState({MEL: mel_data});
     const [aggregate, vic, nsw] = await Promise.all([
       this.getData("aggregate"),
       this.getData("vic"),
       this.getData("nsw")
     ])
+
+
+
     const polys = await this.getPolys();
-    let {MEL, SYD, BNE, ADL, PER, HBA, CAN, DRW} = polys
-    this.setState({MEL, SYD, BNE, ADL, PER, HBA, CAN, DRW})
+    let {SYD, BNE, ADL, PER, HBA, CAN, DRW} = polys
+    this.setState({SYD, BNE, ADL, PER, HBA, CAN, DRW})
     repos.aggregate = aggregate
     repos.vic = vic
     repos.nsw = nsw
@@ -335,9 +355,8 @@ async getData(target) {
                 <MDBCard className="rounded-0" id="mapCard">
                   <MDBCardBody>
                     {((this.state.data != undefined) &&  (this.state.repos.aggregate != undefined) && (this.state.MEL.aggregate != undefined)) ?
-                    <InteractiveMap key={key} size={this.state.data.currentFires.area.total} lat={this.state.options.city.lat} lng={this.state.options.city.lng} maxSize={this.state.repos.aggregate.currentFires.area.total} poly={this.state[`${this.state.options.city.abr}`][`${this.state.options.target.label}`]} maxPoly={this.state[`${this.state.options.city.abr}`].aggregate} city={this.state.options.city}/>
+                    <InteractiveMap key={key} size={this.state.data.currentFires.area.total} lat={this.state.options.city.lat} lng={this.state.options.city.lng} maxSize={this.state.repos.aggregate.currentFires.area.total} poly={((`${this.state.options.city.abr}` in this.state) && (`${this.state.options.target.label}` in this.state[`${this.state.options.city.abr}`])) ? this.state[`${this.state.options.city.abr}`][`${this.state.options.target.label}`] : undefined} maxPoly={((`${this.state.options.city.abr}` in this.state) && ("aggregate" in this.state[`${this.state.options.city.abr}`])) ? this.state[`${this.state.options.city.abr}`].aggregate : undefined} city={this.state.options.city.abr}/>
                     : null}
-
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>

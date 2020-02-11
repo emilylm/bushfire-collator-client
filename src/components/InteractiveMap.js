@@ -106,12 +106,16 @@ export default class InteractiveMap extends Component {
     bounds2.getNorthEast().wrap();
     this.setState({rectangleBounds: bounds2})
     //this.refs.map.leafletElement.fitBounds(bounds);
-    //this.refs.rec.leafletElement.setBounds(bounds2);
+    this.refs.rec.leafletElement.setBounds(bounds2);
 
-    let bounds3 = this.refs.poly.leafletElement.getBounds()
-    bounds3.getSouthWest().wrap();
-    bounds3.getNorthEast().wrap();
-    this.refs.map.leafletElement.fitBounds(bounds3);
+    if (this.props.maxPoly == undefined){
+      this.refs.map.leafletElement.fitBounds(bounds);
+    } else {
+      let bounds3 = this.refs.poly.leafletElement.getBounds()
+      bounds3.getSouthWest().wrap();
+      bounds3.getNorthEast().wrap();
+      this.refs.map.leafletElement.fitBounds(bounds3);
+    }
   }
 
   /*
@@ -155,13 +159,14 @@ export default class InteractiveMap extends Component {
 
   render() {
     const position = [this.state.lat, this.state.lng]
+    let recColour = (this.props.city == "PAR" || this.props.city == "LCY" || this.props.city == "NYC") ? "red" : "transparent"
     return (
       <Map ref='map' zoomSnap={0.1} center={position} zoom={this.state.zoom}>
       <FeatureGroup ref="features" onAdd={this.onFeatureGroupAdd}>
         <Circle ref="circle" key={this.props.maxSize} center={[this.state.lat, this.state.lng]} fillColor="transparent" color="transparent" radius={this.state.maxRadius} />
         <Circle ref="circle2" key={this.props.size} center={[this.state.lat, this.state.lng]} fillColor="transparent" color="transparent" radius={this.state.radius} />
-        <Rectangle ref="rec" bounds={this.state.rectangleBounds} fillColor="transparent" color="transparent"/>
         <GeoJSON ref="poly" data={this.props.maxPoly} fillColor="transparent" color="transparent"/>
+        <Rectangle ref="rec" bounds={this.state.rectangleBounds} fillColor={`${recColour}`} color={`${recColour}`}/>
         <GeoJSON key={this.state.size} data={this.state.poly} fillColor="red" color="red" weight="1"/>
       </FeatureGroup>
         <TileLayer
