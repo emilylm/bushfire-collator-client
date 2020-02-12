@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7b1a8c95c520648e18b464fb226bd99f",
+    "revision": "9b46ad2e96be0f271498f26a48cbdc99",
     "url": "/bushfire-collator-client/index.html"
   },
   {
-    "revision": "f6e3d7bb0f4fe6d0c006",
-    "url": "/bushfire-collator-client/static/css/2.3afc4269.chunk.css"
+    "revision": "bd2f5c927b1a6c8b4c54",
+    "url": "/bushfire-collator-client/static/css/2.99ad4efe.chunk.css"
   },
   {
-    "revision": "d980a0e5136a906a8301",
-    "url": "/bushfire-collator-client/static/css/main.1e4594ea.chunk.css"
+    "revision": "a1f9b6a41f8604e64d8e",
+    "url": "/bushfire-collator-client/static/css/main.6562e183.chunk.css"
   },
   {
-    "revision": "f6e3d7bb0f4fe6d0c006",
-    "url": "/bushfire-collator-client/static/js/2.a857b58a.chunk.js"
+    "revision": "bd2f5c927b1a6c8b4c54",
+    "url": "/bushfire-collator-client/static/js/2.8f02c12e.chunk.js"
   },
   {
     "revision": "5d920c0943cfb5aea5574725f145993b",
-    "url": "/bushfire-collator-client/static/js/2.a857b58a.chunk.js.LICENSE"
+    "url": "/bushfire-collator-client/static/js/2.8f02c12e.chunk.js.LICENSE"
   },
   {
-    "revision": "d980a0e5136a906a8301",
-    "url": "/bushfire-collator-client/static/js/main.e89f2aeb.chunk.js"
+    "revision": "a1f9b6a41f8604e64d8e",
+    "url": "/bushfire-collator-client/static/js/main.21b890cf.chunk.js"
   },
   {
     "revision": "3586cce8769a94f94570",
